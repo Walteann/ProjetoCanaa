@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Canaã</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="testeLogin">
+
+  <ion-card *ngFor="let itemMenu of menu_inicial" (click)="menuSelecionado(itemMenu.componenteMenu)">
+    <img src="{{itemMenu.urlImg}}">
+  </ion-card>
+
+</ion-content>

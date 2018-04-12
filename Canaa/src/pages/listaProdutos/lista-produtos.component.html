@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Lista de Produtos
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-content>
+
+            <ion-list>
+                    <ion-item *ngFor="let list of merc">{{list.mercadoria}}</ion-item>
+            </ion-list>
+
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content padding>
+        <ion-list inset>
+            <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina.componente)">
+                {{pagina.titulo}}
+            </button>
+        </ion-list>
+
+    </ion-content>
+</ion-menu>
+
+
+
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

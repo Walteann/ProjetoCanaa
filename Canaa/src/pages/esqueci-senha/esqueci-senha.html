@@ -1,0 +1,23 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Recupera Senha</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content  padding class="testeLogin">
+	<form class="testeLogin" (ngSubmit)="recuperarSenha()">
+		<ion-item>
+			<ion-label stacked>CPF</ion-label>
+			<ion-input [(ngModel)]="cpf" name="cpf" type="text"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Email</ion-label>
+			<ion-input [(ngModel)]="email" name="email" type="email"></ion-input>
+		</ion-item>
+
+		<button ion-button block type="submit">RECUPERAR</button>
+	</form>
+
+</ion-content>

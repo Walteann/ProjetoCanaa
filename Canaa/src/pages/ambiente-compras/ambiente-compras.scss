@@ -1,0 +1,17 @@
+page-ambiente-compras {
+
+    ion-row {
+        background-color: black;
+        color: white;
+    }
+
+    ion-row:nth-child(2)   {
+        background-color: #c6c6c6;
+        color: black;
+    }
+    ion-select {
+        margin-left:150px;
+        width: 350px;
+    }
+
+}
