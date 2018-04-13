@@ -32,7 +32,11 @@ export class LoginPage {
 
     efetuarLogin() {
         if (this._usuarioService.autenticaLogin(this.usuario, this.senha)) {
-            this.navCtrl.setRoot(HomePage);
+            if(this.usuario == 'admin' && this.senha == 'admin') {
+                this.navCtrl.setRoot(HomePage, {permissao: true});
+            } else {
+                this.navCtrl.setRoot(HomePage, {permissao: false});
+            }
         } else {
             let tituloEr = 'Houve um problema';
             let messagemEr = 'Verifique Login e senha estão corretos';

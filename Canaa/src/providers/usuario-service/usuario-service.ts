@@ -7,6 +7,8 @@ export class UsuarioServiceProvider {
 	
 	public cpfUser = '08169897459';
 	public nomeUser = 'walteann';
+	public admin = 'admin';
+	public senhaAdmin = 'admin';
 	public senhaUser = '123456';
 
 	constructor() {
@@ -18,7 +20,9 @@ export class UsuarioServiceProvider {
 		
 		if((usuario == this.nomeUser  || usuario == this.cpfUser) && senha == this.senhaUser)	{
 			return true;
-		}else{
+		}else if (usuario == this.admin && senha == this.senhaAdmin) {
+			return true;
+		} else {
 			return false;
 		}
 

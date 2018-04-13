@@ -9,6 +9,7 @@
         <ion-list inset>
             <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina.componente)">
                 {{pagina.titulo}}
+                <ion-icon float-right name="{{pagina.icone}}"></ion-icon>
             </button>
         </ion-list>
 

@@ -10,7 +10,7 @@
 
 	<form (ngSubmit)="cadastrarUsuario()">
 		<ion-item>
-			<ion-label color="primary" stacked maxlength="40">Nome</ion-label>
+			<ion-label color="primary" stacked maxlength="40">Nome<ion-icon float-right name="contact"></ion-icon></ion-label>
 			<ion-input type="text" placeholder="Nome"></ion-input>
 		</ion-item>
 
@@ -20,7 +20,7 @@
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>Email</ion-label>
+			<ion-label color="primary" stacked>Email <ion-icon float-right name="mail"></ion-icon></ion-label>
 			<ion-input type="email" placeholder="email" maxlength="50"></ion-input>
 		</ion-item>
 
@@ -30,12 +30,12 @@
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>Celular</ion-label>
+			<ion-label color="primary" stacked><ion-icon float-right name="call"></ion-icon>Celular</ion-label>
 			<ion-input type="text" placeholder="Celular" [brmasker]="{mask:'(00) 00000-0000', len:15}"></ion-input>
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>Endereço</ion-label>
+			<ion-label color="primary" stacked><ion-icon float-right name="home"></ion-icon> Endereço</ion-label>
 			<ion-input type="text" placeholder="Endereço" maxlength="200"></ion-input>
 		</ion-item>
 
