@@ -47,17 +47,17 @@ export class AmbienteComprasPage implements OnInit {
       {
         mercadoria: "Feijao",
         qtd: 2,
-        precoUni: 1.0
+        precoUni: 0.0
       },
       {
         mercadoria: "Arroz",
         qtd: 2,
-        precoUni: 3.0
+        precoUni: 0
       },
       {
         mercadoria: "Macarrao",
         qtd: 5,
-        precoUni: 1.25
+        precoUni: 0
       }
     ];
 
@@ -185,34 +185,34 @@ export class AmbienteComprasPage implements OnInit {
 
   alertProdutoFinalizado(listaDeProdutos) {
     var alert = this._alertCtrl.create({
-      title: "Endereço de Entrega",
-      // message:
-      //   "Endereco de Entrega",
-       inputs: [
-           {
+      title: "Pedido",
+      message:
+        "Pedito realizado com sucesso",
+      //  inputs: [
+      //      {
 
-               name: 'nomeacao',
-               type: 'text',
-               placeholder: 'Informe o Endereço'
-           },
-           {
+      //          name: 'nomeacao',
+      //          type: 'text',
+      //          placeholder: 'Informe o Endereço'
+      //      },
+      //      {
 
-               name: 'numeroCelular',
-               type: 'number',
-               placeholder: 'numero celular'
-           }
-       ],
+      //          name: 'numeroCelular',
+      //          type: 'number',
+      //          placeholder: 'numero celular'
+      //      }
+      //  ],
       buttons: [
-        {
-          text: "NÃO",
-          handler: () => {
+        // {
+        //   text: "NÃO",
+        //   handler: () => {
 
-          }
-        },
+        //   }
+        // },
         {
-          text: "SIM",
+          text: "OK",
           handler: data => {
-              this.salvarCompras(listaDeProdutos, data.nomeacao);
+              this.salvarCompras();
           }
         }
       ]
@@ -250,18 +250,18 @@ export class AmbienteComprasPage implements OnInit {
     this.alertProdutoFinalizado(lista);
   }
 
-  salvarCompras(listaRecebida, nomeDaCompra)   {
+  salvarCompras()   {
+    this.navCtrl.push(HomePage);
+    // let listaString = listaRecebida;
+    // let listaJson = JSON.stringify(listaString);
 
-    let listaString = listaRecebida;
-    let listaJson = JSON.stringify(listaString);
+    // var listaCodificada = window.btoa(listaJson);
+    // console.log(listaCodificada);
+    // console.log(nomeDaCompra);
 
-    var listaCodificada = window.btoa(listaJson);
-    console.log(listaCodificada);
-    console.log(nomeDaCompra);
+    // var Hist = [{nome: nomeDaCompra, hist: listaCodificada }]
 
-    var Hist = [{nome: nomeDaCompra, hist: listaCodificada }]
-
-    this.enviandoParaBanco(Hist);
+    // this.enviandoParaBanco(Hist);
   }
 
   enviandoParaBanco(arrayHistorico){

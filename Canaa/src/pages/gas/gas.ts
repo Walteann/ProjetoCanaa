@@ -149,34 +149,14 @@ export class GasPage implements OnInit {
 	
 	  alertProdutoFinalizado(listaDeProdutos) {
 		var alert = this._alertCtrl.create({
-		  title: "Endereço de Entrega",
-		  // message:
-		  //   "Endereco de Entrega",
-		   inputs: [
-			   {
-	
-				   name: 'nomeacao',
-				   type: 'text',
-				   placeholder: 'Informe o Endereço'
-			   },
-			   {
-	
-				   name: 'numeroCelular',
-				   type: 'number',
-				   placeholder: 'numero celular'
-			   }
-		   ],
+		  title: "Pedido",
+		  message:
+		    "Pedido realizado com sucesso!",
 		  buttons: [
-			{
-			  text: "NÃO",
-			  handler: () => {
-	
-			  }
-			},
 			{
 			  text: "SIM",
 			  handler: data => {
-				  this.salvarCompras(listaDeProdutos, data.nomeacao);
+				  this.salvarCompras();
 			  }
 			}
 		  ]
@@ -214,18 +194,8 @@ export class GasPage implements OnInit {
 		this.alertProdutoFinalizado(lista);
 	  }
 	
-	  salvarCompras(listaRecebida, nomeDaCompra)   {
-	
-		let listaString = listaRecebida;
-		let listaJson = JSON.stringify(listaString);
-	
-		var listaCodificada = window.btoa(listaJson);
-		console.log(listaCodificada);
-		console.log(nomeDaCompra);
-	
-		var Hist = [{nome: nomeDaCompra, hist: listaCodificada }]
-	
-		this.enviandoParaBanco(Hist);
+	  salvarCompras()   {
+			this.navCtrl.push(HomePage);	
 	  }
 	
 	  enviandoParaBanco(arrayHistorico){

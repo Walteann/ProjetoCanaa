@@ -19,8 +19,8 @@ export class MyApp {
 
   public paginas = [
     {titulo: 'Home', componente: HomePage, icone: "home" },
-    {titulo: 'Cadastro', componente: HistoricoPage, icone: "create"   },
-    {titulo: 'Usuario', componente: HistoricoPage, icone: "person-add"  },
+    // {titulo: 'Cadastro', componente: HistoricoPage, icone: "create"   },
+    {titulo: 'Perfil', componente: HistoricoPage, icone: "person-add"  },
   ];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
