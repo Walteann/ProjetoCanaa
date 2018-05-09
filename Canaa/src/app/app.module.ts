@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -23,6 +25,8 @@ import { LoginPage } from '../pages/login/login';
 import { HistoricoPage } from '../pages/historico/historico';
 import { GasPage } from '../pages/gas/gas';
 import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
+
+import { GasService } from '../pages/gas/gas.service';
 
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 import { ListagemProdutosServiceProvider } from '../providers/listagem-produtos-service/listagem-produtos-service';
@@ -45,6 +49,17 @@ import { ComprasHistoricoServiceProvider } from '../providers/compras-historico-
     BrowserModule,
     BrMaskerModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(
+      {
+        apiKey: 'AIzaSyD9vEfVOXDiKZi8EIQe2P9dVPklFom5z40',
+        authDomain: 'angular5crud-c5fdb.firebaseapp.com',
+        databaseURL: 'https://angular5crud-c5fdb.firebaseio.com',
+        projectId: 'angular5crud-c5fdb',
+        storageBucket: 'angular5crud-c5fdb.appspot.com',
+        messagingSenderId: '1054446784488'
+      }
+    ),
+    AngularFireDatabaseModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -62,6 +77,7 @@ import { ComprasHistoricoServiceProvider } from '../providers/compras-historico-
   providers: [
     StatusBar,
     SplashScreen,
+    GasService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsuarioServiceProvider,
     ListagemProdutosServiceProvider,
