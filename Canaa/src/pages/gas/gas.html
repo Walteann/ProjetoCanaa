@@ -5,61 +5,56 @@
 	</ion-navbar>
 
 </ion-header>
-
 <ion-content padding>
-	<ion-select>
-		<ion-option value="" selected>Escolha a Marca do Gás</ion-option>
-		<ion-option value="cristal">Ultragás</ion-option>
-		<ion-option value="santaJoana">Liquigás</ion-option>
-		<ion-option value="indaia">Copergás</ion-option>
-	</ion-select>
-
-	<ion-list radio-group [(ngModel)]="relationship">
+	<form #gasForm="ngForm">
+		<ion-select required [(ngModel)]="gasFormulario.marca" name="marca">
+			<ion-option value="" selected>Escolha a Marca do Gás</ion-option>
+			<ion-option *ngFor="let marca of marcaGas" [value]="marca.valor">{{marca.marca}}</ion-option>
+		</ion-select>
+		
 		<ion-item>
-			<ion-label>Retornável</ion-label>
-			<ion-radio value="retornavel" checked></ion-radio>
+			<ion-label color="primary" fixed>Quantidade</ion-label>
+			<ion-input [(ngModel)]="gasFormulario.quantidade" name="quantidade" #quantidade="ngModel" type="number" placeholder="qtd" required></ion-input>
 		</ion-item>
-		<ion-item>
-			<ion-label>Novo</ion-label>
-			<ion-radio value="novo"></ion-radio>
-		</ion-item>
-	</ion-list>
 
+		<ion-list radio-group [(ngModel)]="gasFormulario.novoRetornavel" name="novoretornavel" [disabled]="!quantidade.valid">
+			<ion-item>
+				<ion-label>Retornável</ion-label>
+				<ion-radio value="retornavel" (click)="atribuirValor('retornavel')" [disabled]="!quantidade.valid"></ion-radio>
+			</ion-item>
+			<ion-item>
+				<ion-label>Novo</ion-label>
+				<ion-radio value="novo" (click)="atribuirValor('novo')" [disabled]="!quantidade.valid"></ion-radio>
+			</ion-item>
+		</ion-list>
 
-	<ion-item>
-		<ion-label color="primary" fixed>Quantidade</ion-label>
-		<ion-input type="number" placeholder="qtd"></ion-input>
-	</ion-item>
-
-	<ion-list radio-group [(ngModel)]="formaPagamento">
-		<ion-item>
-			<ion-label>Dinheiro</ion-label>
-			<ion-radio value="dinheiro" checked></ion-radio>
-		</ion-item>
+		<ion-list radio-group [(ngModel)]="gasFormulario.formaPagamento" name="formaPagamento" >
+			<ion-item>
+				<ion-label>Dinheiro</ion-label>
+				<ion-radio value="dinheiro" checked></ion-radio>
+			</ion-item>
+		</ion-list>
 		<ion-item>
 			<ion-label>Troco ?</ion-label>
-			<ion-toggle [(ngModel)]="formaPagamento" [disabled]="formaPagamento != dinheiro"></ion-toggle>
+			<ion-toggle [(ngModel)]="gasFormulario.troco" name="troco" [disabled]="gasFormulario.formaPagamento == cartao"></ion-toggle>
 		</ion-item>
-		<ion-item>
-			<ion-label>Cartão</ion-label>
-			<ion-radio value="cartao"></ion-radio>
-		</ion-item>
-	</ion-list>
 
-	<ion-item-group>
-		<ion-item-divider>
-			Total
-			<h1>R$: {{Total}}</h1>
-			<ion-fab right top>
-			</ion-fab>
-		</ion-item-divider>
+		<ion-item-group>
+			<ion-item-divider>
+				<h1>R$:</h1>
+				<ion-fab right top>
+					<ion-label *ngIf="gasFormulario.novoRetornavel === 'retornavel' ">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+					<ion-label *ngIf="gasFormulario.novoRetornavel === 'novo'">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+				</ion-fab>
+			</ion-item-divider>
 
-	</ion-item-group>
+		</ion-item-group>
 
+	</form>
 </ion-content>
 <ion-footer float-right>
 	<ion-toolbar>
-		<button ion-button round color="primary" (click)="produtoFinalizado()">
+		<button ion-button round color="primary" [disabled]="!gasForm.valid" (click)="realizaPedido()">
 			Finalizar Compras
 		</button>
 	</ion-toolbar>
