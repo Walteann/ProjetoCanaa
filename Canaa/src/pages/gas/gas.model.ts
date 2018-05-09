@@ -7,4 +7,7 @@ export class GasModel {
     troco?: boolean;
     valorUnitario?: number;
     total?: number;
+    dataPedido?: string;
+    tipoObjeto?: string;
+    hora?: string;
 }

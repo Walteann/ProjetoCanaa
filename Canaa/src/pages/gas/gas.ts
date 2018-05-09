@@ -47,10 +47,11 @@ export class GasPage implements OnInit {
         this._gasService.getData();
         this.gasFormulario = new GasModel();
         this.gasFormulario.marca = '';
+        this.gasFormulario.troco = false;
     }
  
     salvarCompras() {
-        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
     }
 
     enviandoParaBanco(arrayHistorico) {
@@ -76,7 +77,13 @@ export class GasPage implements OnInit {
     }
 
     realizaPedido() {
-        console.log(this.gasFormulario);
+        let timestamp = Date.now();
+        var dataP = new Date(timestamp);
+        let hora = new Date();
+
+        this.gasFormulario.dataPedido = dataP.toLocaleDateString('pt-BR');
+        this.gasFormulario.hora = hora.getHours() + ':' + hora.getMinutes() + ':' + hora.getSeconds();
+        this.gasFormulario.tipoObjeto = 'Gás';
         this._gasService.adicionarGas(this.gasFormulario);
         var alert = this._alertCtrl.create({
             title: "Pedido",

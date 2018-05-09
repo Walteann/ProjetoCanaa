@@ -19,6 +19,7 @@ export class GasService {
     }
 
     adicionarGas(gas: GasModel) {
+        console.log(gas);
         this.gasLista.push({
             marca: gas.marca,
             novoRetornavel: gas.novoRetornavel,
@@ -26,7 +27,10 @@ export class GasService {
             formaPagamento: gas.formaPagamento,
             troco: gas.troco,
             valorUnitario: gas.valorUnitario,
-            total: gas.total
+            total: gas.total,
+            dataPedido: gas.dataPedido,
+            tipoObjeto: gas.tipoObjeto,
+            hora: gas.hora
         });
     }
 
@@ -38,7 +42,10 @@ export class GasService {
             formaPagamento: gas.formaPagamento,
             troco: gas.troco,
             valorUnitario: gas.valorUnitario,
-            total: gas.total
+            total: gas.total,
+            dataPedido: gas.dataPedido,
+            tipoObjeto: gas.tipoObjeto,
+            hora: gas.hora
         });
     }
 
