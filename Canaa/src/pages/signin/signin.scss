@@ -1,5 +1,4 @@
-page-login {
-
+page-signin {
     .testeLogin {
         background-color: #b7d8e6;
     }
@@ -11,5 +10,9 @@ page-login {
 
     #botao {
         background-color: #f68200;
+    }
+
+    ion-label.text-danger.validacao.label.label-md {
+        color: red;
     }
 }

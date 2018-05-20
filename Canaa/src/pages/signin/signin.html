@@ -1,0 +1,40 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content padding class="testeLogin">
+    <!-- <ion-item class="testeLogin"> -->
+    <img src="assets/imgs/Canaa.fw.png" id="imagem">
+    <!-- </ion-item> -->
+    <form class="testeLogin" #form="ngForm" novalidate>
+        <ion-item>
+            <ion-label stacked>E-mail</ion-label>
+            <ion-input [(ngModel)]="email" name="email" type="text" #emailR="ngModel" required></ion-input>
+            <ion-label text-center *ngIf="emailR.errors && (emailR.dirty || emailR.touched)" class="text-danger validacao">
+                O campo é obrigatório
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Senha</ion-label>
+            <ion-input [(ngModel)]="senha" name="senha" type="password" #password="ngModel" required></ion-input>
+            <ion-label text-center *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger validacao">
+                O campo é obrigatório
+            </ion-label>
+        </ion-item>
+
+        <button id="botao" ion-button block [disabled]="!form.form.valid" (click)="signIn()">ENTRAR</button>
+    </form>
+    <button ion-button block icon-left color="danger" (click)="loginWithGoogle()">
+        <ion-icon name="logo-google"></ion-icon>
+        Entrar com o Google
+    </button>
+    <ion-label text-center>
+        <a (click)="criarConta()">Cadastre-se</a>
+    </ion-label>
+
+    <ion-label text-center>
+        <a (click)="resetPassword()">Esqueceu a senha</a>
+    </ion-label>
+
+</ion-content>

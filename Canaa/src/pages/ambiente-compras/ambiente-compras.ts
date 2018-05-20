@@ -1,4 +1,3 @@
-import { HistoricoAddModels } from './../../modals/historico-add.models';
 import { Component, OnInit } from "@angular/core";
 import {
     NavController,
@@ -8,10 +7,6 @@ import {
 } from "ionic-angular";
 
 import { HomePage } from '../home/home';
-import { ListaMercadoriaModels } from "../../modals/lista-mercadoria.models";
-import { IHistoricoComprasModels } from './../../modals/historico-compras.models';
-
-import { ComprasHistoricoServiceProvider } from './../../providers/compras-historico-service/compras-historico-service';
 
 import { GasModel } from './../gas/gas.model';
 import { GasService } from './../gas/gas.service';
@@ -22,7 +17,6 @@ import { GasService } from './../gas/gas.service';
     templateUrl: "ambiente-compras.html"
 })
 export class AmbienteComprasPage implements OnInit {
-    public listaDeMercadorias: ListaMercadoriaModels[];
 
     public formaPagamento = 'dinheiro';
     gasFormulario: GasModel = new GasModel();
@@ -44,7 +38,6 @@ export class AmbienteComprasPage implements OnInit {
         public navCtrl: NavController,
         public navParams: NavParams,
         private _alertCtrl: AlertController,
-        private _historicoComprasService: ComprasHistoricoServiceProvider,
         private _gasService: GasService
     ) { }
 

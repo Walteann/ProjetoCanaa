@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
 import { AmbienteComprasPage } from '../ambiente-compras/ambiente-compras';
-import { ListaProdutosComponent } from '../listaProdutos/lista-produtos.component';
-import { HistoricoPage } from '../historico/historico';
 import { GasPage } from '../gas/gas';
-
+import { AuthService } from '../../providers/auth/auth.service';
+import { SigninPage } from '../signin/signin';
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
@@ -22,7 +20,8 @@ export class HomePage implements OnInit {
 
 	constructor(
 		public navCtrl: NavController,
-		private _navParams: NavParams
+		private _navParams: NavParams,
+		private authService: AuthService
 	) {
 
 		this.menu_inicial = [
@@ -60,6 +59,15 @@ export class HomePage implements OnInit {
 		this.navCtrl.push(componenteR);
 
 	}
+
+	signOut() {
+        this.authService.signOut()
+            .then(() => {
+                this.navCtrl.setRoot(SigninPage);
+            }).catch((error) => {
+                console.error(error);
+            });
+    }
 
 }
 

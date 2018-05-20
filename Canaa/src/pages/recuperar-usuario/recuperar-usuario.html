@@ -1,0 +1,22 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Recupera Senha</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content  padding class="testeLogin">
+	<form class="testeLogin" #form="ngForm" novalidate>
+		<ion-item>
+			<ion-label stacked>E-mail</ion-label>
+			<ion-input [(ngModel)]="userEmail" name="email" type="email" #emailR="ngModel" required></ion-input>
+		</ion-item>
+		<ion-label text-center *ngIf="emailR.errors && (emailR.dirty || emailR.touched)" class="text-danger validacao">
+			O campo é obrigatório
+		  </ion-label>
+
+		<button ion-button block [disabled]="!form.form.valid" (click)="resetPassword()">RECUPERAR</button>
+	</form>
+
+</ion-content>

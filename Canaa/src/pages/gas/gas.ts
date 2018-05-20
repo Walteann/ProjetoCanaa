@@ -3,8 +3,6 @@ import {
     NavController, NavParams, AlertController,
     ItemSliding
 } from 'ionic-angular';
-import { ListaMercadoriaModels } from '../../modals/lista-mercadoria.models';
-import { ComprasHistoricoServiceProvider } from '../../providers/compras-historico-service/compras-historico-service';
 import { HomePage } from '../home/home';
 import { NgForm } from '@angular/forms';
 import { GasModel } from './gas.model';
@@ -33,7 +31,6 @@ export class GasPage implements OnInit {
         public navCtrl: NavController,
         public navParams: NavParams,
         private _alertCtrl: AlertController,
-        private _historicoComprasService: ComprasHistoricoServiceProvider,
         private _gasService: GasService
         
     ) {
@@ -54,15 +51,6 @@ export class GasPage implements OnInit {
         this.navCtrl.setRoot(HomePage);
     }
 
-    enviandoParaBanco(arrayHistorico) {
-        console.log(arrayHistorico);
-        this._historicoComprasService.setHistorico(arrayHistorico)
-            .subscribe(data => {
-                console.log(data + ' Esse objeto foi adicionado');
-                this.navCtrl.push(HomePage);
-            });
-
-    }
 
     atribuirValor(valor?: string) {
         if (valor === 'retornavel') {
