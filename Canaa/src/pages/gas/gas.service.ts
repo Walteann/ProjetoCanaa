@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireAuth } from "angularfire2/auth";
 
 import { GasModel } from './gas.model';
 
@@ -8,13 +9,19 @@ export class GasService {
 
     gasLista: AngularFireList<any>;
     gasSelecionado: GasModel = new GasModel();
+    usuarioUid: any;
 
     constructor(
-        private firebase: AngularFireDatabase
-    ) { }
+        private firebase: AngularFireDatabase, private angularFireAuth: AngularFireAuth
+    ) {
+        angularFireAuth.authState.subscribe(user => {
+            this.usuarioUid = user.uid;
+            // this.enderecoList = db.list(PATH);
+        });
+    }
 
     getData() {
-        this.gasLista = this.firebase.list('novoPedidoGas');
+        this.gasLista = this.firebase.list('novosPedidos');
         return this.gasLista;
     }
 
@@ -23,9 +30,11 @@ export class GasService {
         this.gasLista.push({
             marca: gas.marca,
             novoRetornavel: gas.novoRetornavel,
+            uidUsuario: this.usuarioUid,            
             quantidade: gas.quantidade,
             formaPagamento: gas.formaPagamento,
             troco: gas.troco,
+            valorTroco: gas.valorTroco,
             valorUnitario: gas.valorUnitario,
             total: gas.total,
             dataPedido: gas.dataPedido,
@@ -38,9 +47,11 @@ export class GasService {
         this.gasLista.update(gas.$key, {
             marca: gas.marca,
             novoRetornavel: gas.novoRetornavel,
+            uidUsuario: this.usuarioUid,
             quantidade: gas.quantidade,
             formaPagamento: gas.formaPagamento,
             troco: gas.troco,
+            valorTroco: gas.valorTroco,
             valorUnitario: gas.valorUnitario,
             total: gas.total,
             dataPedido: gas.dataPedido,

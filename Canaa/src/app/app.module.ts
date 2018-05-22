@@ -49,12 +49,12 @@ import { SigninPage } from '../pages/signin/signin';
         IonicModule.forRoot(MyApp),
         AngularFireModule.initializeApp(
             {
-                apiKey: "AIzaSyAU-BDu_Qz7Git0fo7Ytkdfi6iYB58BSs0",
-                authDomain: "canaa-gas-e-agua.firebaseapp.com",
-                databaseURL: "https://canaa-gas-e-agua.firebaseio.com",
-                projectId: "canaa-gas-e-agua",
-                storageBucket: "canaa-gas-e-agua.appspot.com",
-                messagingSenderId: "871847196720"
+                apiKey: "AIzaSyD9vEfVOXDiKZi8EIQe2P9dVPklFom5z40",
+                authDomain: "angular5crud-c5fdb.firebaseapp.com",
+                databaseURL: "https://angular5crud-c5fdb.firebaseio.com",
+                projectId: "angular5crud-c5fdb",
+                storageBucket: "angular5crud-c5fdb.appspot.com",
+                messagingSenderId: "1054446784488"
             }
         ),
         AngularFireDatabaseModule,

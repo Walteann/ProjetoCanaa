@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import {
     NavController,
     NavParams,
-    AlertController,
-    ItemSliding
+    AlertController
 } from "ionic-angular";
 
 import { HomePage } from '../home/home';
@@ -19,6 +18,7 @@ import { GasService } from './../gas/gas.service';
 export class AmbienteComprasPage implements OnInit {
 
     public formaPagamento = 'dinheiro';
+    isTroco: boolean = true;
     gasFormulario: GasModel = new GasModel();
     valorDoGas: number;
     selecionado = {
@@ -50,6 +50,18 @@ export class AmbienteComprasPage implements OnInit {
         this.gasFormulario = new GasModel();
         this.gasFormulario.marca = '';
         this.gasFormulario.troco = false;
+        this.gasFormulario.valorTroco = 0;
+    }
+
+    habilitaTroco() {
+        console.log(this.gasFormulario.troco);
+        if (this.gasFormulario.troco === true) {
+            this.gasFormulario.valorTroco = 0;
+            this.isTroco = false;
+        } else if (this.gasFormulario.troco === false) {
+            this.gasFormulario.valorTroco = 0;
+            this.isTroco = true;
+        }
     }
 
 

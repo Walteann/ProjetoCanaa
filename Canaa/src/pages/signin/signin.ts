@@ -6,7 +6,7 @@ import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../providers/auth/auth.service';
 import { RecuperarUsuarioPage } from '../recuperar-usuario/recuperar-usuario';
-
+import { EnderecoPage } from '../endereco/endereco';
 @IonicPage()
 @Component({
     selector: 'page-signin',
@@ -40,8 +40,12 @@ export class SigninPage {
         load.present();
         this.authService.signInWithGoogle()
             .then(
-                () => {
-                    this.navCtrl.setRoot(HomePage);
+                (data) => {
+                    if (data.additionalUserInfo.isNewUser) {
+                        this.navCtrl.setRoot(EnderecoPage);
+                    } else {
+                        this.navCtrl.setRoot(HomePage);
+                    }
                     load.dismiss();
                 }).catch(
                     (error) => {

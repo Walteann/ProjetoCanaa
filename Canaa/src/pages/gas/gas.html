@@ -7,14 +7,17 @@
 </ion-header>
 <ion-content padding>
 	<form #gasForm="ngForm">
-		<ion-select required [(ngModel)]="gasFormulario.marca" name="marca">
-			<ion-option value="" selected>Escolha a Marca do Gás</ion-option>
-			<ion-option *ngFor="let marca of marcaGas" [value]="marca.valor">{{marca.marca}}</ion-option>
-		</ion-select>
-		
+		<ion-item>
+			<ion-select required [(ngModel)]="gasFormulario.marca" name="marca">
+				<ion-option value="" selected>Escolha a Marca do Gás</ion-option>
+				<ion-option *ngFor="let marca of marcaGas" [value]="marca.valor">{{marca.marca}}</ion-option>
+			</ion-select>
+		</ion-item>
+
 		<ion-item>
 			<ion-label color="primary" fixed>Quantidade</ion-label>
-			<ion-input [(ngModel)]="gasFormulario.quantidade" name="quantidade" #quantidade="ngModel" type="number" placeholder="qtd" required></ion-input>
+			<ion-input [(ngModel)]="gasFormulario.quantidade" name="quantidade" #quantidade="ngModel" type="number" placeholder="qtd"
+			 required></ion-input>
 		</ion-item>
 
 		<ion-list radio-group [(ngModel)]="gasFormulario.novoRetornavel" name="novoretornavel" [disabled]="!quantidade.valid">
@@ -28,7 +31,7 @@
 			</ion-item>
 		</ion-list>
 
-		<ion-list radio-group [(ngModel)]="gasFormulario.formaPagamento" name="formaPagamento" >
+		<ion-list radio-group [(ngModel)]="gasFormulario.formaPagamento" name="formaPagamento">
 			<ion-item>
 				<ion-label>Dinheiro</ion-label>
 				<ion-radio value="dinheiro" checked required></ion-radio>
@@ -36,7 +39,12 @@
 		</ion-list>
 		<ion-item>
 			<ion-label>Troco ?</ion-label>
-			<ion-toggle [(ngModel)]="gasFormulario.troco" name="troco" [disabled]="gasFormulario.formaPagamento == cartao"></ion-toggle>
+			<ion-toggle [(ngModel)]="gasFormulario.troco" name="troco" [disabled]="gasFormulario.formaPagamento == cartao" (ionChange)="habilitaTroco()"></ion-toggle>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" fixed>Troco R$: </ion-label>
+			<ion-input [(ngModel)]="gasFormulario.valorTroco" name="valorTroco" #valorTroco="ngModel" type="number" placeholder="Valor troco"
+			 [disabled]="isTroco"></ion-input>
 		</ion-item>
 
 		<ion-item-group>

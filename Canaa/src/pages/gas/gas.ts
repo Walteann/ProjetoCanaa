@@ -15,6 +15,7 @@ import { GasService } from './gas.service';
 export class GasPage implements OnInit {
 
     gasFormulario: GasModel = new GasModel();
+    isTroco: boolean = true;    
     valorDoGas: number;
     selecionado = {
         valor: 'retornavel'
@@ -45,12 +46,23 @@ export class GasPage implements OnInit {
         this.gasFormulario = new GasModel();
         this.gasFormulario.marca = '';
         this.gasFormulario.troco = false;
+        this.gasFormulario.valorTroco = 0;
+        
     }
  
     salvarCompras() {
         this.navCtrl.setRoot(HomePage);
     }
 
+    habilitaTroco() {
+        if (this.gasFormulario.troco === true) {
+            this.isTroco = false;
+            this.gasFormulario.valorTroco = 0;
+        } else if (this.gasFormulario.troco === false) {
+            this.isTroco = true;
+            this.gasFormulario.valorTroco = 0;
+        }
+    }
 
     atribuirValor(valor?: string) {
         if (valor === 'retornavel') {
