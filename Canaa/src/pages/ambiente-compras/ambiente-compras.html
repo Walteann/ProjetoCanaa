@@ -7,11 +7,12 @@
     </ion-header>
     <ion-content padding>
         <form #gasForm="ngForm">
-            <ion-select required [(ngModel)]="gasFormulario.marca" name="marca">
-                <ion-option value="" selected>Escolha a Marca</ion-option>
-                <ion-option *ngFor="let marca of marcaAgua" [value]="marca.valor">{{marca.marca}}</ion-option>
-            </ion-select>
-            
+            <ion-item>
+                <ion-select required [(ngModel)]="gasFormulario.marca" name="marca">
+                    <ion-option value="" selected>Escolha a Marca</ion-option>
+                    <ion-option *ngFor="let marca of marcaAgua" [value]="marca.valor">{{marca.marca}}</ion-option>
+                </ion-select>
+            </ion-item>
             <ion-item>
                 <ion-label color="primary" fixed>Quantidade</ion-label>
                 <ion-input [(ngModel)]="gasFormulario.quantidade" name="quantidade" #quantidade="ngModel" type="number" placeholder="qtd" required></ion-input>
