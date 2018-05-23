@@ -50,9 +50,9 @@
 		<ion-item-group>
 			<ion-item-divider>
 				<h1>R$:</h1>
-				<ion-fab right top>
-					<ion-label *ngIf="gasFormulario.novoRetornavel === 'retornavel' ">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
-					<ion-label *ngIf="gasFormulario.novoRetornavel === 'novo'">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+				<ion-fab class="precoFinal" right top>
+					<ion-label class="precoLabel" *ngIf="gasFormulario.novoRetornavel === 'retornavel' ">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+					<ion-label class="precoLabel" *ngIf="gasFormulario.novoRetornavel === 'novo'">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
 				</ion-fab>
 			</ion-item-divider>
 
@@ -62,7 +62,7 @@
 </ion-content>
 <ion-footer float-right>
 	<ion-toolbar>
-		<button ion-button round color="primary" [disabled]="!gasForm.valid" (click)="realizaPedido()">
+		<button ion-button round color="primary" [disabled]="!gasForm.valid" (click)="finalizaPedido()">
 			Finalizar Compras
 		</button>
 	</ion-toolbar>

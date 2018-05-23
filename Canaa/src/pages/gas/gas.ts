@@ -76,6 +76,29 @@ export class GasPage implements OnInit {
         }
     }
 
+    finalizaPedido() {
+        let alert = this._alertCtrl.create({
+            title: 'Confirmação de Pedido',
+            message: 'Deseja finalizar pedido?',
+            buttons: [
+              {
+                text: 'Cancelar',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked');
+                }
+              },
+              {
+                text: 'Finalizar',
+                handler: () => {
+                  this.realizaPedido();
+                }
+              }
+            ]
+          });
+          alert.present();
+    }
+
     realizaPedido() {
         let timestamp = Date.now();
         var dataP = new Date(timestamp);

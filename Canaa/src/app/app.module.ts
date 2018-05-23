@@ -13,7 +13,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 //import { HttpModule } from '@angular/http';
-
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { AmbienteComprasPage } from '../pages/ambiente-compras/ambiente-compras';
@@ -31,6 +30,7 @@ import { GasService } from '../pages/gas/gas.service';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 import { AuthService } from '../providers/auth/auth.service';
 import { SigninPage } from '../pages/signin/signin';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -47,6 +47,7 @@ import { SigninPage } from '../pages/signin/signin';
         BrowserModule,
         BrMaskerModule,
         IonicModule.forRoot(MyApp),
+        FormsModule,
         AngularFireModule.initializeApp(
             {
                 apiKey: "AIzaSyD9vEfVOXDiKZi8EIQe2P9dVPklFom5z40",

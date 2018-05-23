@@ -16,7 +16,8 @@ export class HomePage implements OnInit {
 	public itemDoMenu = [];
 
 	public menuR: string;
-
+	tab1Root = SigninPage;
+	tab2Root = GasPage;
 
 	constructor(
 		public navCtrl: NavController,

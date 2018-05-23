@@ -35,23 +35,23 @@
                     <ion-label>Dinheiro</ion-label>
                     <ion-radio value="dinheiro" checked required></ion-radio>
                 </ion-item>
+                <ion-item>
+                    <ion-label>Troco ?</ion-label>
+                    <ion-toggle [(ngModel)]="gasFormulario.troco" name="troco" [disabled]="gasFormulario.formaPagamento == cartao" (ionChange)="habilitaTroco()"></ion-toggle>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" fixed>Troco R$: </ion-label>
+                    <ion-input [(ngModel)]="gasFormulario.valorTroco" name="valorTroco" #valorTroco="ngModel" type="number" placeholder="Valor troco" [disabled]="isTroco"></ion-input>
+                </ion-item>
             </ion-list>
-            <ion-item>
-                <ion-label>Troco ?</ion-label>
-                <ion-toggle [(ngModel)]="gasFormulario.troco" name="troco" [disabled]="gasFormulario.formaPagamento == cartao" (ionChange)="habilitaTroco()"></ion-toggle>
-            </ion-item>
-            <ion-item>
-                <ion-label color="primary" fixed>Troco R$: </ion-label>
-                <ion-input [(ngModel)]="gasFormulario.valorTroco" name="valorTroco" #valorTroco="ngModel" type="number" placeholder="Valor troco" [disabled]="isTroco"></ion-input>
-            </ion-item>
     
             <ion-item-group>
                 <ion-item-divider>
                     <h1>R$:</h1>
-                    <ion-fab right top>
-                        <ion-label *ngIf="gasFormulario.novoRetornavel === 'retornavel' ">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
-                        <ion-label *ngIf="gasFormulario.novoRetornavel === 'novo'">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
-                    </ion-fab>
+                        <ion-fab class="precoFinal" right top>
+                            <ion-label class="precoLabel" *ngIf="gasFormulario.novoRetornavel === 'retornavel' ">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+                            <ion-label class="precoLabel" *ngIf="gasFormulario.novoRetornavel === 'novo'">{{+(this.gasFormulario.valorUnitario * gasFormulario.quantidade).toFixed(2)}}</ion-label>
+                        </ion-fab>
                 </ion-item-divider>
     
             </ion-item-group>
@@ -60,7 +60,7 @@
     </ion-content>
     <ion-footer float-right>
         <ion-toolbar>
-            <button ion-button round color="primary" [disabled]="!gasForm.valid" (click)="realizaPedido()">
+            <button ion-button round color="primary" [disabled]="!gasForm.valid" (click)="finalizaPedido()">
                 Finalizar Compras
             </button>
         </ion-toolbar>

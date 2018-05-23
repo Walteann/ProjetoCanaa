@@ -14,7 +14,6 @@ export class EnderecoService {
     constructor(private db: AngularFireDatabase, private angularFireAuth: AngularFireAuth) {
         angularFireAuth.authState.subscribe(user => {
             this.PATH = '/usuarios/' + user.uid;
-            // this.enderecoList = db.list(PATH);
         });
     }
 

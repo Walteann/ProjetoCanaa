@@ -1,55 +1,59 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>endereco</ion-title>
-  </ion-navbar>
-
+	<ion-navbar>
+		<ion-title>{{title}}</ion-title>
+		<ion-icon class="menu_voltar" (click)="voltarHome()" padding-left name="arrow-back"></ion-icon>
+	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <form (ngSubmit)="cadastrarUsuario()">
+	<form>
 		<ion-item>
-			<ion-label color="primary" stacked maxlength="40">Nome<ion-icon float-right name="contact"></ion-icon></ion-label>
-			<ion-input type="text" placeholder="Nome"></ion-input>
+			<ion-label color="primary" stacked>Nome
+				<ion-icon float-right name="contact"></ion-icon>
+			</ion-label>
+			<ion-input type="text" placeholder="Nome" [(ngModel)]="endereco.nome" name="nome" maxlength="40"></ion-input>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary" stacked>CPF</ion-label>
-			<ion-input type="text" placeholder="CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+			<ion-input type="text" placeholder="CPF" [(ngModel)]="endereco.cpf" name="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked><ion-icon float-right name="call"></ion-icon>Celular</ion-label>
-			<ion-input type="text" placeholder="Celular" [brmasker]="{mask:'(00) 00000-0000', len:15}"></ion-input>
+			<ion-label color="primary" stacked>
+				<ion-icon float-right name="call"></ion-icon>Celular</ion-label>
+			<ion-input type="tel" placeholder="Celular" [(ngModel)]="endereco.celular" name="celular" [brmasker]="{mask:'(00) 00000-0000', len:15}"></ion-input>
 		</ion-item>
-		
+
 		<ion-item>
 			<ion-label color="primary" stacked>CEP</ion-label>
-			<ion-input type="text" placeholder="CEP" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
+			<ion-input type="text" placeholder="CEP" [(ngModel)]="endereco.cep" name="cep" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
 		</ion-item>
-		
+
 		<ion-item>
-			<ion-label color="primary" stacked><ion-icon float-right name="home"></ion-icon> Endereço</ion-label>
-			<ion-input type="text" placeholder="Endereço" maxlength="200"></ion-input>
+			<ion-label color="primary" stacked>
+				<ion-icon float-right name="home"></ion-icon> Endereço</ion-label>
+			<ion-input type="text" placeholder="Endereço" [(ngModel)]="endereco.endereco" name="endereco" maxlength="200"></ion-input>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary" stacked>Cidade</ion-label>
-			<ion-input type="text" placeholder="Cidade" maxlength="50"></ion-input>
+			<ion-input type="text" placeholder="Cidade" [(ngModel)]="endereco.cidade" name="cidade" maxlength="50"></ion-input>
 		</ion-item>
 
 
 		<ion-item>
 			<ion-label color="primary" stacked>Complemento</ion-label>
-			<ion-input type="text" placeholder="Complemento" maxlength="150"></ion-input>
+			<ion-input type="text" placeholder="Complemento" [(ngModel)]="endereco.complemento" name="complemento" maxlength="150"></ion-input>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary" stacked>Bairro</ion-label>
-			<ion-input type="text" placeholder="Bairro" maxlength="50"></ion-input>
+			<ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro" maxlength="50"></ion-input>
 		</ion-item>
 
-		<button ion-button block type="submit">CADASTRAR</button>
+		<button ion-button block (click)="onSubmit()">CADASTRAR</button>
 	</form>
 </ion-content>
