@@ -37,28 +37,30 @@ export class GasService {
             valorTroco: gas.valorTroco,
             valorUnitario: gas.valorUnitario,
             total: gas.total,
+            statusPedido: gas.statusPedido,
             dataPedido: gas.dataPedido,
             tipoObjeto: gas.tipoObjeto,
             hora: gas.hora
         });
     }
 
-    updateEmployee(gas: GasModel) {
-        this.gasLista.update(gas.$key, {
-            marca: gas.marca,
-            novoRetornavel: gas.novoRetornavel,
-            uidUsuario: this.usuarioUid,
-            quantidade: gas.quantidade,
-            formaPagamento: gas.formaPagamento,
-            troco: gas.troco,
-            valorTroco: gas.valorTroco,
-            valorUnitario: gas.valorUnitario,
-            total: gas.total,
-            dataPedido: gas.dataPedido,
-            tipoObjeto: gas.tipoObjeto,
-            hora: gas.hora
-        });
-    }
+    // updateEmployee(gas: GasModel) {
+    //     this.gasLista.update(gas.$key, {
+    //         marca: gas.marca,
+    //         novoRetornavel: gas.novoRetornavel,
+    //         uidUsuario: this.usuarioUid,
+    //         quantidade: gas.quantidade,
+    //         formaPagamento: gas.formaPagamento,
+    //         troco: gas.troco,
+    //         valorTroco: gas.valorTroco,
+    //         valorUnitario: gas.valorUnitario,
+    //         total: gas.total,
+    //         status: gas.status,
+    //         dataPedido: gas.dataPedido,
+    //         tipoObjeto: gas.tipoObjeto,
+    //         hora: gas.hora
+    //     });
+    // }
 
     deleteEmployee($key: string) {
         this.gasLista.remove($key);

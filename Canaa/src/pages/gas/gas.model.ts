@@ -11,5 +11,6 @@ export class GasModel {
     total?: number;
     dataPedido?: string;
     tipoObjeto?: string;
+    statusPedido?: string;
     hora?: string;
 }

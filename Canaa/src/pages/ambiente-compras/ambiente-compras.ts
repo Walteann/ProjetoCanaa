@@ -50,6 +50,7 @@ export class AmbienteComprasPage implements OnInit {
         this.gasFormulario = new GasModel();
         this.gasFormulario.marca = '';
         this.gasFormulario.troco = false;
+        this.gasFormulario.statusPedido = 'novo';
         this.gasFormulario.valorTroco = 0;
     }
 
