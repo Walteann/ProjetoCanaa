@@ -7,6 +7,8 @@ import { HomePage } from '../home/home';
 import { AuthService } from '../../providers/auth/auth.service';
 import { RecuperarUsuarioPage } from '../recuperar-usuario/recuperar-usuario';
 import { EnderecoPage } from '../endereco/endereco';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 @IonicPage()
 @Component({
     selector: 'page-signin',
@@ -15,10 +17,14 @@ import { EnderecoPage } from '../endereco/endereco';
 export class SigninPage {
     user: User = new User();
     @ViewChild('form') form: NgForm
+	listaUsuarios: AngularFireList<any>
+    
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private loadCtrl: LoadingController,
-        private authService: AuthService, private toastCtrl: ToastController
+		private db: AngularFireDatabase,
+        private authService: AuthService, private toastCtrl: ToastController, 
     ) {
+		this.listaUsuarios = this.db.list('listaUsuarios');        
     }
 
     ionViewDidLoad() {
@@ -43,6 +49,13 @@ export class SigninPage {
                 (data) => {
                     if (data.additionalUserInfo.isNewUser) {
                         this.navCtrl.setRoot(EnderecoPage);
+                        this.listaUsuarios.push({
+                            uid: data.user.uid,
+                            email: data.user.email,
+                            displayName: data.user.displayName,
+                            phoneNumber: data.user.phoneNumber,
+                            photoURL: data.user.photoURL
+                        });
                     } else {
                         this.navCtrl.setRoot(HomePage);
                     }

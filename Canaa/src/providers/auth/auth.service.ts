@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
@@ -8,11 +9,16 @@ import AuthProvider = firebase.auth.AuthProvider;
 @Injectable()
 export class AuthService {
 	user: firebase.User;
+	listaUsuarios: AngularFireList<any>
 
-	constructor(public afAuth: AngularFireAuth) {
+	constructor(public afAuth: AngularFireAuth,
+		private db: AngularFireDatabase
+	) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
+
+		this.listaUsuarios = this.db.list('listaUsuarios');
 	}
 
 	signInWithEmail(credentials) {
@@ -24,6 +30,18 @@ export class AuthService {
 	signInWithGoogle() {
 		console.log('Sign in with google');
 		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
+
+			// if (data['additionalUserInfo'].isNewUser) {
+			// 	this.listaUsuarios.push({
+			// 		uid: data.user.uid,
+			// 		email: data.user.email,
+			// 		displayName: data.user.displayName,
+			// 		phoneNumber: data.user.phoneNumber,
+			// 		photoURL: data.user.photoURL
+			// 	});
+			// }
+		// 	console.log(data);
+		// });
 	}
 
 	get authenticated(): boolean {
@@ -60,7 +78,15 @@ export class AuthService {
 	}
 
 	signUp(credentials) {
-		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password).then(data =>	{
+			this.listaUsuarios.push({
+				uid: data.uid,
+				email: data.email,
+				displayName: data.displayName,
+				phoneNumber: data.phoneNumber,
+				photoURL: data.photoURL
+			});
+		});
     }
 
     resetPassword(email: string) {
