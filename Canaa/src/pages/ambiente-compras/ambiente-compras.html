@@ -19,14 +19,14 @@
                 <ion-input [(ngModel)]="gasFormulario.quantidade" name="quantidade" #quantidade="ngModel" type="number" placeholder="qtd" required></ion-input>
             </ion-item>
     
-            <ion-list radio-group [(ngModel)]="gasFormulario.novoRetornavel" name="novoretornavel" [disabled]="!quantidade.valid">
+            <ion-list radio-group [(ngModel)]="gasFormulario.novoRetornavel" name="novoretornavel" [disabled]="gasFormulario.quantidade === null || gasFormulario.quantidade === 0">
                 <ion-item>
                     <ion-label>Retornável</ion-label>
-                    <ion-radio value="retornavel" (click)="atribuirValor('retornavel')" [disabled]="!quantidade.valid"></ion-radio>
+                    <ion-radio value="retornavel" (click)="atribuirValor('retornavel')" [disabled]="gasFormulario.quantidade === undefined || gasFormulario.quantidade === 0"></ion-radio>
                 </ion-item>
                 <ion-item>
                     <ion-label>Novo</ion-label>
-                    <ion-radio value="novo" (click)="atribuirValor('novo')" [disabled]="!quantidade.valid"></ion-radio>
+                    <ion-radio value="novo" (click)="atribuirValor('novo')" [disabled]="gasFormulario.quantidade === undefined || gasFormulario.quantidade === 0"></ion-radio>
                 </ion-item>
             </ion-list>
     

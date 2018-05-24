@@ -60,7 +60,7 @@ export class MyApp {
       this.nav.setRoot(componente);
       load.dismiss();
     } else if (componente === EnderecoPage) {
-      this.teste.list(this.PATH).snapshotChanges()
+      this.teste.list(this.PATH + '/enderecos').snapshotChanges()
         .map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         }).subscribe(data =>  {

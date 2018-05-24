@@ -93,7 +93,7 @@ export class EnderecoPage  {
     sendFirebase(usuarioEndereco: Endereco) {
         return new Promise((resolve, reject) => {
             if (usuarioEndereco.key) {
-                this.db.list(this.PATH)
+                this.db.list(this.PATH + '/enderecos')
                     .update(
                         usuarioEndereco.key, {
                             nome: usuarioEndereco.nome,
@@ -106,10 +106,13 @@ export class EnderecoPage  {
                             bairro: usuarioEndereco.bairro
                         }
                     )
-                    .then(() => resolve())
+                    .then(() => {
+                        resolve();
+                        this.navCtrl.setRoot(HomePage);
+                    })
                     .catch((e) => reject(e));
-            } else {
-                this.db.list(this.PATH)
+                } else {
+                    this.db.list(this.PATH + '/enderecos')
                     .push({
                         nome: usuarioEndereco.nome,
                         cpf: usuarioEndereco.cpf,
@@ -120,8 +123,11 @@ export class EnderecoPage  {
                         complemento: usuarioEndereco.complemento,
                         bairro: usuarioEndereco.bairro
                     })
-                    .then(() => resolve());
-            }
+                    .then(() => {
+                        resolve()
+                        this.navCtrl.setRoot(HomePage);
+                    });
+                }
         })
     }
 
