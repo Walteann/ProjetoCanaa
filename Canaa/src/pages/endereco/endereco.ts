@@ -12,14 +12,16 @@ import { HomePage } from '../home/home';
     selector: 'page-endereco',
     templateUrl: 'endereco.html',
 })
-export class EnderecoPage  {
+export class EnderecoPage {
     title: string;
     form: FormGroup;
     endereco: Endereco;
     ok: any;
-
+    userMAIL: any;
     PATH: any;
+    USER: any;
     enderecoList: AngularFireList<any>;
+    usuarioSemFoto = 'https://www.cloudninefertility.com/wp-content/uploads/2017/12/User-dummy.png';
 
     private setupPageTitle() {
         this.title = this.navParams.data.endereco ? 'Atualizar Endereço' : 'Cadastrar novo Endereço';
@@ -34,19 +36,32 @@ export class EnderecoPage  {
             this.PATH = '/usuarios/' + user.uid;
         });
         this.endereco = this.navParams.get('endereco') || {};
-        // this.createForm();
-        
-        // this.endereco = this.navParams.data.endereco || {};
-        // this.createForm();
+        this.userMAIL = this.navParams.get('userLog') || {};
 
-        // // maneira 2
-            console.log('==');
-        console.log(this.navParams.get('endereco'));
-        console.log('==');
-        console.log(this.endereco);
-        console.log('==');
+        if (this.navParams.get('user')) {
+            this.USER = this.navParams.get('user');
+
+            this.userMAIL.email = this.USER.email;
+            this.userMAIL.displayName = this.USER.displayName;
+            this.userMAIL.phoneNumber = this.USER.phoneNumber;
+            this.userMAIL.photoURL = this.USER.photoURL;
+            this.userMAIL.uid = this.USER.uid;
+        }
+        if (this.userMAIL.displayName) {
+            this.endereco.nome = this.userMAIL.displayName;
+        }
+
+        if (this.userMAIL.photoURL === this.usuarioSemFoto) {
+            this.userMAIL.photoURL = this.usuarioSemFoto;
+        } else if (this.userMAIL.photoURL !== this.usuarioSemFoto) {
+            this.userMAIL.photoURL = this.userMAIL.photoURL;
+        }
+        if (!this.userMAIL.photoURL) {
+            this.userMAIL.photoURL = this.usuarioSemFoto;
+        }
+
         this.setupPageTitle();
-        
+
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad EnderecoPage');
@@ -57,15 +72,15 @@ export class EnderecoPage  {
             spinner: 'crescent',
         });
         load.present();
-            this.sendFirebase(this.endereco)
-                .then(() => {
-                    this.toast.create({ message: 'Endereço salvo com sucesso.', duration: 3000 }).present();
-                    load.dismiss();
-                }).catch((e) => {
-                    this.toast.create({ message: 'Erro ao salvar o endereço.', duration: 3000 }).present();
-                    console.error(e);
-                    load.dismiss();
-                })
+        this.sendFirebase(this.endereco)
+            .then(() => {
+                this.toast.create({ message: 'Endereço salvo com sucesso.', duration: 3000 }).present();
+                load.dismiss();
+            }).catch((e) => {
+                this.toast.create({ message: 'Erro ao salvar o endereço.', duration: 3000 }).present();
+                console.error(e);
+                load.dismiss();
+            })
     }
 
     voltarHome() {
@@ -84,9 +99,9 @@ export class EnderecoPage  {
 
     get(key: string) {
         return this.db.object(this.PATH + key).snapshotChanges()
-          .map(c => {
-            return { key: c.key, ...c.payload.val() };
-          });
+            .map(c => {
+                return { key: c.key, ...c.payload.val() };
+            });
     }
 
 
@@ -103,7 +118,8 @@ export class EnderecoPage  {
                             endereco: usuarioEndereco.endereco,
                             cidade: usuarioEndereco.cidade,
                             complemento: usuarioEndereco.complemento,
-                            bairro: usuarioEndereco.bairro
+                            bairro: usuarioEndereco.bairro,
+                            user: usuarioEndereco.user
                         }
                     )
                     .then(() => {
@@ -111,8 +127,8 @@ export class EnderecoPage  {
                         this.navCtrl.setRoot(HomePage);
                     })
                     .catch((e) => reject(e));
-                } else {
-                    this.db.list(this.PATH + '/enderecos')
+            } else {
+                this.db.list(this.PATH + '/enderecos')
                     .push({
                         nome: usuarioEndereco.nome,
                         cpf: usuarioEndereco.cpf,
@@ -121,13 +137,16 @@ export class EnderecoPage  {
                         endereco: usuarioEndereco.endereco,
                         cidade: usuarioEndereco.cidade,
                         complemento: usuarioEndereco.complemento,
-                        bairro: usuarioEndereco.bairro
+                        bairro: usuarioEndereco.bairro,
+                        user: this.userMAIL
+
+
                     })
                     .then(() => {
                         resolve()
                         this.navCtrl.setRoot(HomePage);
                     });
-                }
+            }
         })
     }
 

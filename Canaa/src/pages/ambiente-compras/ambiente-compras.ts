@@ -73,11 +73,11 @@ export class AmbienteComprasPage implements OnInit {
     // aparti daqui
     atribuirValor(valor?: string) {
         if (valor === 'retornavel') {
-            this.gasFormulario.valorUnitario = 3.99;
+            this.gasFormulario.valorUnitario = 7.99;
             this.gasFormulario.total = this.gasFormulario.valorUnitario * this.gasFormulario.quantidade;
             this.gasFormulario.total = +this.gasFormulario.total.toFixed(2);
         } else if (valor === 'novo') {
-            this.gasFormulario.valorUnitario = 11.99;
+            this.gasFormulario.valorUnitario = 15.99;
             this.gasFormulario.total = this.gasFormulario.valorUnitario * this.gasFormulario.quantidade;
             this.gasFormulario.total = +this.gasFormulario.total.toFixed(2);
         }

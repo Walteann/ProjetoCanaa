@@ -1,3 +1,4 @@
+import { Usuario } from './usuario.model';
 export class Endereco {
     key: string;
     nome: string;
@@ -8,4 +9,5 @@ export class Endereco {
     cidade: string;
     complemento: string;
     bairro: string;
+    user: Usuario;
 }

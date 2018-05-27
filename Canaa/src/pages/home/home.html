@@ -1,12 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Canaã</ion-title>
+    <ion-title>
+      <img id="logoMarca" src="{{logoUrl}}" alt="Canaa">
+    </ion-title>
     <ion-buttons end>
-      <button id="signOut" ion-button (click)="signOut()">
-        LOGOUT
+      <button ion-button (click)="paginaEndereco()">
+        <ion-icon class="signOut" name="person-add"></ion-icon>
+      </button>
+      <button class="signOut" ion-button (click)="signOut()">
+        SAIR
       </button>
     </ion-buttons>
   </ion-navbar>

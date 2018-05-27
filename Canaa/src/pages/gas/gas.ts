@@ -46,6 +46,7 @@ export class GasPage implements OnInit {
         this.gasFormulario = new GasModel();
         this.gasFormulario.marca = '';
         this.gasFormulario.troco = false;
+        this.gasFormulario.statusPedido = 'novo';        
         this.gasFormulario.valorTroco = 0;
         
     }
@@ -66,11 +67,11 @@ export class GasPage implements OnInit {
 
     atribuirValor(valor?: string) {
         if (valor === 'retornavel') {
-            this.gasFormulario.valorUnitario = 74.99;
+            this.gasFormulario.valorUnitario = 67.99;
             this.gasFormulario.total = this.gasFormulario.valorUnitario * this.gasFormulario.quantidade;
             this.gasFormulario.total = +this.gasFormulario.total.toFixed(2);
         } else if (valor === 'novo') {
-            this.gasFormulario.valorUnitario = 119.99;
+            this.gasFormulario.valorUnitario = 169.99;
             this.gasFormulario.total = this.gasFormulario.valorUnitario * this.gasFormulario.quantidade;
             this.gasFormulario.total = +this.gasFormulario.total.toFixed(2);
         }

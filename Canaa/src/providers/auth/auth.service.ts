@@ -78,15 +78,7 @@ export class AuthService {
 	}
 
 	signUp(credentials) {
-		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password).then(data =>	{
-			this.listaUsuarios.push({
-				uid: data.uid,
-				email: data.email,
-				displayName: data.displayName,
-				phoneNumber: data.phoneNumber,
-				photoURL: data.photoURL
-			});
-		});
+		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
     }
 
     resetPassword(email: string) {

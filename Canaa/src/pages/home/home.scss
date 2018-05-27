@@ -13,14 +13,17 @@ page-home {
         height:230px;
     }
 
-    #signOut {
+    .signOut {
         background: transparent;
     }
 
-    #signOut ion-icon {
+    .signOut ion-icon {
         color: #000000;
     }
 
+    #logoMarca {
+        width: 30%;
+    }
     // ion-icon.menu_tab {
     //     font-size: 25pt;
     // }
