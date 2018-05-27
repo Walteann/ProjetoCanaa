@@ -8,52 +8,76 @@
 
 
 <ion-content padding>
-	<form>
+	<form #form="ngForm">
 		<ion-item>
-			<ion-label color="primary" stacked>Nome
+			<ion-label color="primary" stacked>Nome <span class="spanR">*</span>
 				<ion-icon float-right name="contact"></ion-icon>
 			</ion-label>
-			<ion-input type="text" placeholder="Nome" [(ngModel)]="endereco.nome" name="nome" maxlength="40"></ion-input>
+			<ion-input type="text" placeholder="Nome" [(ngModel)]="endereco.nome" name="nome" #nome="ngModel" maxlength="40" required></ion-input>
+			<ion-label text-center *ngIf="nome.errors && (nome.dirty || nome.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>CPF</ion-label>
-			<ion-input type="text" placeholder="CPF" [(ngModel)]="endereco.cpf" name="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary" stacked>
-				<ion-icon float-right name="call"></ion-icon>Celular</ion-label>
-			<ion-input type="tel" placeholder="Celular" [(ngModel)]="endereco.celular" name="celular" [brmasker]="{mask:'(00) 00000-0000', len:15}"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary" stacked>CEP</ion-label>
-			<ion-input type="text" placeholder="CEP" [(ngModel)]="endereco.cep" name="cep" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
+			<ion-label color="primary" stacked>CPF <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="CPF" [(ngModel)]="endereco.cpf" name="cpf" #cpf="ngModel" [brmasker]="{mask:'000.000.000-00', len:14}" required></ion-input>
+			<ion-label text-center *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary" stacked>
-				<ion-icon float-right name="home"></ion-icon> Endereço</ion-label>
-			<ion-input type="text" placeholder="Endereço" [(ngModel)]="endereco.endereco" name="endereco" maxlength="200"></ion-input>
+				<ion-icon float-right name="call"></ion-icon>Celular <span class="spanR">*</span></ion-label>
+			<ion-input type="tel" placeholder="Celular" [(ngModel)]="endereco.celular" required name="celular" #telefone="ngModel" [brmasker]="{mask:'(00) 00000-0000', len:15}"></ion-input>
+			<ion-label text-center *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>Cidade</ion-label>
-			<ion-input type="text" placeholder="Cidade" [(ngModel)]="endereco.cidade" name="cidade" maxlength="50"></ion-input>
+			<ion-label color="primary" stacked>CEP <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="CEP" [(ngModel)]="endereco.cep" name="cep" #cep="ngModel" [brmasker]="{mask:'00.000-000', len:10}" required></ion-input>
+			<ion-label text-center *ngIf="cep.errors && (cep.dirty || cep.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>
+				<ion-icon float-right name="home"></ion-icon>Endereço <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="Endereço" [(ngModel)]="endereco.endereco" name="endereco" #enderecoR="ngModel" maxlength="200" required></ion-input>
+			<ion-label text-center *ngIf="enderecoR.errors && (enderecoR.dirty || enderecoR.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>Cidade <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="Cidade" [(ngModel)]="endereco.cidade" name="cidade" #cidade="ngModel" maxlength="50" required></ion-input>
+			<ion-label text-center *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
 
 		<ion-item>
-			<ion-label color="primary" stacked>Complemento</ion-label>
-			<ion-input type="text" placeholder="Complemento" [(ngModel)]="endereco.complemento" name="complemento" maxlength="150"></ion-input>
+			<ion-label color="primary" stacked>Complemento <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="Complemento" [(ngModel)]="endereco.complemento" name="complemento" #comple="ngModel" maxlength="150" required></ion-input>
+			<ion-label text-center *ngIf="comple.errors && (comple.dirty || comple.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
 		<ion-item>
-			<ion-label color="primary" stacked>Bairro</ion-label>
-			<ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro" maxlength="50"></ion-input>
+			<ion-label color="primary" stacked>Bairro <span class="spanR">*</span></ion-label>
+			<ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro" #bairro="ngModel" maxlength="50" required></ion-input>
+			<ion-label text-center *ngIf="bairro.errors && (bairro.dirty || bairro.touched)" class="text-danger validacao">
+				O campo é obrigatório
+			</ion-label>
 		</ion-item>
 
-		<button ion-button block (click)="onSubmit()">CADASTRAR</button>
+		<button ion-button block [disabled]="!form.form.valid" (click)="onSubmit()">CADASTRAR</button>
 	</form>
 </ion-content>

@@ -30,6 +30,13 @@ export class MyApp implements OnInit {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth, db: AngularFireDatabase,
   loadCtrl: LoadingController) {
 
+    platform.ready().then(() => {
+      // do whatever you need to do here.
+      setTimeout(() => {
+        splashScreen.hide();
+      }, 100);
+    });
+
     const authObserver = afAuth.authState.subscribe(user => {
       if (user) {
         this.userEmail = {};
@@ -63,6 +70,8 @@ export class MyApp implements OnInit {
     //   spinner: 'crescent',
     // });
   }
+
+
 
   abrePagina(componente): void {
     
