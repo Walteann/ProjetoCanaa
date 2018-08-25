@@ -50,12 +50,12 @@ import { FormsModule } from '@angular/forms';
         FormsModule,
         AngularFireModule.initializeApp(
             {
-                apiKey: "AIzaSyD9vEfVOXDiKZi8EIQe2P9dVPklFom5z40",
-                authDomain: "angular5crud-c5fdb.firebaseapp.com",
-                databaseURL: "https://angular5crud-c5fdb.firebaseio.com",
-                projectId: "angular5crud-c5fdb",
-                storageBucket: "angular5crud-c5fdb.appspot.com",
-                messagingSenderId: "1054446784488"
+                apiKey: '##COLAR AQUI FIREBASE',
+                authDomain: '##COLAR AQUI FIREBASE',
+                databaseURL: '##COLAR AQUI FIREBASE',
+                projectId: '##COLAR AQUI FIREBASE',
+                storageBucket: '##COLAR AQUI FIREBASE',
+                messagingSenderId: '##COLAR AQUI FIREBASE'
             }
         ),
         AngularFireDatabaseModule,
